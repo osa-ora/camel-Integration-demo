@@ -66,7 +66,7 @@ public class RestRoute extends RouteBuilder {
         from("direct:getUserAccount")
             .setHeader("Content-Type", constant("application/json"))
             .setBody(simple("select * from account where id = ${header.id} LIMIT 1"))
-            .to("jdbc:camel")
+            .to("jdbc:datasource")
             .choice()
                .when(simple("${body.size()} > 0"))
                     .transform().jsonpath("$[0]")
