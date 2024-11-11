@@ -16,30 +16,10 @@ camel:
   component:
     kafka:
       brokers: ${KAFKA_BROKERS:my-kafka-cluster-kafka-bootstrap:9092}
-    amqp:
-      host: amqp://my-amq-amqp-0-svc     
-      port: 5672
-      broker-url: ${AMQP_BROKER_URL:amqp://my-amq-amqp-0-svc:5672} 
-      destination-name: ${AMQP_DESTINATION_NAME:transfers}
-      username: admin   
-      password: adminPass 
-
-# MQTT
-mqtt:
-  brokerUrl: ${MQTT_BROKER_URL:tcp://my-amq-my-mqtt-0-svc:1883}
-  destinationName: ${MQTT_DESTINATION_NAME:transfers}
-  client:
-    id: ${MQTT_CLIENT_ID:swift-mqtt}
-  username: ${MQTT_USERNAME:admin}
-  password: ${MQTT_PASSWORD:adminPass}
-
 
 # Kafka topics
 consumer:
   topic: ${CONSUMER_TOPIC:test-topic}
-
-amqp:
-  brokerUrl: ${AMQP_BROKER_URL:amqp://my-amq-amqp-0-svc:5672}
   
 producer:
   topic: ${PRODUCER_TOPIC:test-topic}
