@@ -84,13 +84,6 @@
    			<artifactId>spring-boot-starter-undertow</artifactId>
 		</dependency>
 
-		<!-- Camel Paho MQTT5 Component for MQTT support -->
-		<dependency>
-			<groupId>org.apache.camel.springboot</groupId>
-			<artifactId>camel-paho-mqtt5-starter</artifactId>
-			<version>${camel.version}</version>
-		</dependency>
-
 		<!-- Camel Kafka Component for Kafka support -->
 		<dependency>
 			<groupId>org.apache.camel.springboot</groupId>
@@ -131,16 +124,6 @@
 			<version>${mysql.version}</version>
 			<scope>runtime</scope>
 		</dependency>
-		<dependency>
-		    <groupId>org.apache.camel</groupId>
-		    <artifactId>camel-amqp</artifactId>
-		    <version>${camel.version}</version>
-		</dependency>
-		<dependency>
-    <groupId>org.apache.camel.springboot</groupId>
-    <artifactId>camel-amqp-starter</artifactId>
-    <version>${camel.version}</version>
-</dependency>
 	</dependencies>
 
 	<build>
