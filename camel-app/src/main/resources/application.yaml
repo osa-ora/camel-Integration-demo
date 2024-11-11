@@ -3,6 +3,7 @@ spring:
     name: camel-demo
   main:
     web-application-type: servlet
+    allow-bean-definition-overriding: true
   datasource:
     url: ${DB_URL:jdbc:mysql://localhost:3306/accountdb}
     username: ${DB_USERNAME:test}
