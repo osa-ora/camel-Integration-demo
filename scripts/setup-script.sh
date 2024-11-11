@@ -30,7 +30,7 @@ echo "Will install: $COMMAND"
 oc exec $POD_NAME -- mysql -u root accountdb -e "create table accountdb.account ( id INT AUTO_INCREMENT NOT NULL PRIMARY KEY, firstname VARCHAR( 255 ) NOT NULL, lastname VARCHAR( 255 ) NOT NULL,status INT NOT NULL);insert into accountdb.account (id, firstname, lastname, status) values (1,'Osama','Oransa',1);insert into accountdb.account (id, firstname, lastname, status) values (2,'Osa','Ora',1);"  
 
 # Download database properties
-curl https://raw.githubusercontent.com/osa-ora/camel-Integration-demo/scripts/datasource.properties >datasource.properties
+curl https://raw.githubusercontent.com/osa-ora/camel-Integration-demo/refs/heads/main/scripts/datasource.properties >datasource.properties
 
 # Create DB secret
 oc create secret generic my-datasource --from-file=datasource.properties
@@ -38,10 +38,10 @@ oc create secret generic my-datasource --from-file=datasource.properties
 echo "Press [Enter] key to setup the Kafka cluster ..." 
 read
 # Provision Kafka using object details
-oc apply -f https://raw.githubusercontent.com/osa-ora/camel-Integration-demo/scripts/kafka-sample/kafka-topic.yaml
+oc apply -f https://raw.githubusercontent.com/osa-ora/camel-Integration-demo/refs/heads/main/scripts/kafka-topic.yaml
 
 # Download kafka properties
-curl https://raw.githubusercontent.com/osa-ora/camel-Integration-demo/scripts/kafka.properties >kafka-config.properties
+curl https://raw.githubusercontent.com/osa-ora/camel-Integration-demo/refs/heads/main/scripts/kafka.properties >kafka-config.properties
 
 # Create secret
 oc create secret generic my-kafka-props --from-file=kafka-config.properties
@@ -49,10 +49,13 @@ oc create secret generic my-kafka-props --from-file=kafka-config.properties
 echo "Press [Enter] key to setup the AMQ broker cluster ..." 
 read
 # Provision AMQ using object details
-oc apply -f https://raw.githubusercontent.com/osa-ora/camel-Integration-demo/scripts/amq-broker.yaml
+oc apply -f https://raw.githubusercontent.com/osa-ora/camel-Integration-demo/refs/heads/main/scripts/amq-broker.yaml
+
+# Provision AMQ address object details
+oc apply -f https://raw.githubusercontent.com/osa-ora/camel-k-samples/refs/heads/main/amq-example/mqtt-demo/address.yaml
 
 # Download jms properties
-curl https://raw.githubusercontent.com/osa-ora/camel-Integration-demo/scripts/amq-config.properties >amq-config.properties
+curl https://raw.githubusercontent.com/osa-ora/camel-Integration-demo/refs/heads/main/scripts/amq-config.properties >amq-config.properties
 
 # Create configMap
 #oc create configmap my-amq-config --from-file=amq-config.properties
@@ -62,8 +65,8 @@ oc create secret generic my-amq-config --from-file=amq-config.properties
 echo "Press [Enter] key to deploy Camel App ..." 
 read
 # Deploy SpringBoot Application
-oc new-app --name=camel-app java~https://github.com/osa-ora/camel-Integration-demo --context-dir=camel-app -n $1
-oc expose svc/camel-demo -n $1
+oc new-app --name=camel-app java~https://github.com/osa-ora/camel-Integration-demo --context-dir=camel-app
+oc expose svc/camel-app
 oc set env deployment/camel-app --from secret/my-datasource
 oc set env deployment/camel-app --from secret/my-kafka-props
 oc set env deployment/camel-app --from secret/my-amq-config
