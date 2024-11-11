@@ -29,26 +29,26 @@ oc exec $POD_NAME -- mysql -u root accountdb -e "create table accountdb.account 
 
 # Download database properties
 # TODO fix the URL
-curl https://raw.githubusercontent.com/osa-ora/camel-demo/scripts/datasource.properties >datasource.properties
+curl https://raw.githubusercontent.com/osa-ora/camel-Integration-demo/scripts/datasource.properties >datasource.properties
 
 # Create DB secret
 oc create secret generic my-datasource --from-file=datasource.properties
 
 
 # Provision Kafka using object details
-oc apply -f https://raw.githubusercontent.com/osa-ora/camel-demo/scripts/kafka-sample/kafka-topic.yaml
+oc apply -f https://raw.githubusercontent.com/osa-ora/camel-Integration-demo/scripts/kafka-sample/kafka-topic.yaml
 
 # Download kafka properties
-curl https://raw.githubusercontent.com/osa-ora/camel-demo/scripts/kafka.properties >kafka-config.properties
+curl https://raw.githubusercontent.com/osa-ora/camel-Integration-demo/scripts/kafka.properties >kafka-config.properties
 
 # Create secret
 oc create secret generic my-kafka-props --from-file=kafka-config.properties
 
 # Provision AMQ using object details
-oc apply -f https://raw.githubusercontent.com/osa-ora/camel-demo/scripts/amq-broker.yaml
+oc apply -f https://raw.githubusercontent.com/osa-ora/camel-Integration-demo/scripts/amq-broker.yaml
 
 # Download jms properties
-curl https://raw.githubusercontent.com/osa-ora/camel-demo/scripts/amq-config.properties >amq-config.properties
+curl https://raw.githubusercontent.com/osa-ora/camel-Integration-demo/scripts/amq-config.properties >amq-config.properties
 
 # Create configMap
 #oc create configmap my-amq-config --from-file=amq-config.properties
@@ -56,7 +56,7 @@ curl https://raw.githubusercontent.com/osa-ora/camel-demo/scripts/amq-config.pro
 oc create secret generic my-amq-config --from-file=amq-config.properties
 
 # Deploy SpringBoot Application
-oc new-app --name=camel-app java~https://github.com/osa-ora/camel-demo --context-dir=camel-app -n $1
+oc new-app --name=camel-app java~https://github.com/osa-ora/camel-Integration-demo --context-dir=camel-app -n $1
 oc expose svc/camel-demo -n $1
 oc set env deployment/camel-app --from secret/my-datasource
 oc set env deployment/camel-app --from secret/my-kafka-props
