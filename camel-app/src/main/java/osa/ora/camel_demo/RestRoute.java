@@ -42,7 +42,7 @@ public class RestRoute extends RouteBuilder {
                     .log("Scenario is 2: JMS")
                     .setBody(simple("{'message':'${header.message} - JMS Message'}"))
                     .log("Sending message to JMS: ${body}")
-                    .to("jms:{{jms.destinationType}}:{{jms.destinationName}}?exchangePattern=InOnly")
+                    .to("amqp:{{jms.destinationName}}?exchangePattern=InOnly")
                     .setHeader("Content-Type", constant("application/json"))
                     .log("Message details: ${body}")
                 .when(exchange -> exchange.getProperty("scenario", Integer.class) == 3)
