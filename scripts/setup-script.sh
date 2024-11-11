@@ -46,21 +46,21 @@ curl https://raw.githubusercontent.com/osa-ora/camel-Integration-demo/refs/heads
 # Create secret
 oc create secret generic my-kafka-props --from-file=kafka-config.properties
 
-echo "Press [Enter] key to setup the AMQ broker cluster ..." 
-read
+#echo "Press [Enter] key to setup the AMQ broker cluster ..." 
+#read
 # Provision AMQ using object details
-oc apply -f https://raw.githubusercontent.com/osa-ora/camel-Integration-demo/refs/heads/main/scripts/amq-broker.yaml
+#oc apply -f https://raw.githubusercontent.com/osa-ora/camel-Integration-demo/refs/heads/main/scripts/amq-broker.yaml
 
 # Provision AMQ address object details
-oc apply -f https://raw.githubusercontent.com/osa-ora/camel-k-samples/refs/heads/main/amq-example/mqtt-demo/address.yaml
+#oc apply -f https://raw.githubusercontent.com/osa-ora/camel-k-samples/refs/heads/main/amq-example/mqtt-demo/address.yaml
 
 # Download jms properties
-curl https://raw.githubusercontent.com/osa-ora/camel-Integration-demo/refs/heads/main/scripts/amq-config.properties >amq-config.properties
+#curl https://raw.githubusercontent.com/osa-ora/camel-Integration-demo/refs/heads/main/scripts/amq-config.properties >amq-config.properties
 
 # Create configMap
 #oc create configmap my-amq-config --from-file=amq-config.properties
 # Create secret
-oc create secret generic my-amq-config --from-file=amq-config.properties
+#oc create secret generic my-amq-config --from-file=amq-config.properties
 
 echo "Press [Enter] key to deploy Camel App ..." 
 read
@@ -69,7 +69,7 @@ oc new-app --name=camel-app java~https://github.com/osa-ora/camel-Integration-de
 oc expose svc/camel-app
 oc set env deployment/camel-app --from secret/my-datasource
 oc set env deployment/camel-app --from secret/my-kafka-props
-oc set env deployment/camel-app --from secret/my-amq-config
+#oc set env deployment/camel-app --from secret/my-amq-config
 
 echo "Press [Enter] key to do some testing once the camel app deployed successfully ..." 
 read
@@ -78,12 +78,12 @@ read
 oc label deploymentconfig/mysql app.kubernetes.io/part-of=camel-demo
 oc label deployment/camel-app app.kubernetes.io/part-of=camel-demo
 oc label deployment/my-kafka-cluster app.kubernetes.io/part-of=camel-demo
-oc label deployment/my-amq app.kubernetes.io/part-of=camel-demo
+#oc label deployment/my-amq app.kubernetes.io/part-of=camel-demo
 
 # Run some curl commands for testing
 curl $(oc get route camel-app -o jsonpath='{.spec.host}')/command/test?scenario=1
-curl $(oc get route camel-app -o jsonpath='{.spec.host}')/command/TestJMSMessage?scenario=2
-curl $(oc get route camel-app -o jsonpath='{.spec.host}')/command/TestMQTTMessage?scenario=3
+#curl $(oc get route camel-app -o jsonpath='{.spec.host}')/command/TestJMSMessage?scenario=2
+#curl $(oc get route camel-app -o jsonpath='{.spec.host}')/command/TestMQTTMessage?scenario=3
 curl $(oc get route camel-app -o jsonpath='{.spec.host}')/command/TestKafkaMessage?scenario=4
 curl $(oc get route camel-app -o jsonpath='{.spec.host}')/command/test?scenario=5
 
