@@ -19,8 +19,6 @@ camel:
     jms:
       connection-factory: org.apache.qpid.jms.JmsConnectionFactory
       broker-url: ${JMS_BROKER_URL:amqp://my-amq-amqp-0-svc:5672}
-      username: admin
-      password: adminPass
 
 # MQTT
 mqtt:
