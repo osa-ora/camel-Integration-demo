@@ -83,12 +83,6 @@
     		<groupId>org.springframework.boot</groupId>
    			<artifactId>spring-boot-starter-undertow</artifactId>
 		</dependency>
-		<!-- Camel JMS Component for JMS support -->
-		<dependency>
-			<groupId>org.apache.camel.springboot</groupId>
-			<artifactId>camel-jms-starter</artifactId>
-			<version>${camel.version}</version>
-		</dependency>
 
 		<!-- Camel Paho MQTT5 Component for MQTT support -->
 		<dependency>
