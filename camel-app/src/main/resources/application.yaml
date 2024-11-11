@@ -18,7 +18,7 @@ camel:
       brokers: ${KAFKA_BROKERS:my-kafka-cluster-kafka-bootstrap:9092}
     jms:
       connection-factory: org.apache.qpid.jms.JmsConnectionFactory
-      broker-url: ${JMS_BROKER_URL:amqp://my-amq-amqp-0-svc:5672}
+      broker-url: amqp://my-amq-amqp-0-svc:5672
 
 # MQTT
 mqtt:
