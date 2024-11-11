@@ -18,7 +18,9 @@ camel:
       brokers: ${KAFKA_BROKERS:my-kafka-cluster-kafka-bootstrap:9092}
     amqp:
       host: amqp://my-amq-amqp-0-svc     
-      port: 5672           
+      port: 5672
+      broker-url: ${AMQP_BROKER_URL:amqp://my-amq-amqp-0-svc } 
+      destination-name: ${AMQP_DESTINATION_NAME:transfers}
       username: admin   
       password: adminPass 
 
@@ -31,10 +33,6 @@ mqtt:
   username: ${MQTT_USERNAME:admin}
   password: ${MQTT_PASSWORD:adminPass}
 
-# JMS queue/topic
-jms:
-  destinationType: ${JMS_DESTINATION_TYPE:topic}
-  destinationName: ${JMS_DESTINATION_NAME:transfers}
 
 # Kafka topics
 consumer:
