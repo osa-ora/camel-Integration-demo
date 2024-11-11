@@ -10,6 +10,6 @@ public class KafkaConsumer extends RouteBuilder {
         log.info("Starting Kafka Consumer");
 
         from("kafka:{{consumer.topic}}")
-            .log("${body}");
+            .log("Recieved Kafka message by the listener: ${body}");
     }
 }
