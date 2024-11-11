@@ -19,6 +19,11 @@ camel:
     jms:
       connection-factory: org.apache.activemq.ActiveMQConnectionFactory
       broker-url: amqp://my-amq-amqp-0-svc:5672
+    amqp:
+      host: amqp://my-amq-amqp-0-svc     
+      port: 5672           
+      username: admin   
+      password: adminPass 
 
 # MQTT
 mqtt:
