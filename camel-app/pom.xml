@@ -111,13 +111,6 @@
 			<artifactId>camel-jsonpath-starter</artifactId>
 			<version>${camel.version}</version>
 		</dependency>
-
-		<!-- Spring Boot Starter for JMS (ActiveMQ Artemis example) -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-artemis</artifactId>
-			<version>${spring-boot.version}</version>
-		</dependency>
 		<!-- Apache Camel Kafka Component for Kafka integration -->
 		<dependency>
 			<groupId>org.apache.camel.springboot</groupId>
