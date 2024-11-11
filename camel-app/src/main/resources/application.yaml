@@ -19,7 +19,7 @@ camel:
     amqp:
       host: amqp://my-amq-amqp-0-svc     
       port: 5672
-      broker-url: ${AMQP_BROKER_URL:amqp://my-amq-amqp-0-svc} 
+      broker-url: ${AMQP_BROKER_URL:amqp://my-amq-amqp-0-svc:5672} 
       destination-name: ${AMQP_DESTINATION_NAME:transfers}
       username: admin   
       password: adminPass 
@@ -39,7 +39,7 @@ consumer:
   topic: ${CONSUMER_TOPIC:test-topic}
 
 amqp:
-  brokerUrl: ${AMQP_BROKER_URL:amqp://my-amq-amqp-0-svc}
+  brokerUrl: ${AMQP_BROKER_URL:amqp://my-amq-amqp-0-svc:5672}
   
 producer:
   topic: ${PRODUCER_TOPIC:test-topic}
