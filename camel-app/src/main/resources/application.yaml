@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: camel-demo
+  main:
+    web-application-type: servlet
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/accountdb}
+    username: ${DB_USERNAME:test}
+    password: ${DB_PASSWORD:test123}
+    driver-class-name: ${DB_DRIVER_CLASS_NAME:com.mysql.cj.jdbc.Driver}
+
+camel:
+  springboot:
+    main-run-controller: true
+  component:
+    kafka:
+      brokers: ${KAFKA_BROKERS:my-kafka-cluster-kafka-bootstrap:9092}
+    jms:
+      connection-factory: org.apache.activemq.ActiveMQConnectionFactory  # For ActiveMQ
+      broker-url: ${JMS_BROKER_URL:amqp://my-amq-amqp-0-svc:5672}
+
+# MQTT
+mqtt:
+  brokerUrl: ${MQTT_BROKER_URL:tcp://my-amq-my-mqtt-0-svc:1883}
+  destinationName: ${MQTT_DESTINATION_NAME:transfers}
+  client:
+    id: ${MQTT_CLIENT_ID:swift-mqtt}
+  username: ${MQTT_USERNAME:admin}
+  password: ${MQTT_PASSWORD:adminPass}
+
+# JMS queue/topic
+jms:
+  destinationType: ${JMS_DESTINATION_TYPE:topic}
+  destinationName: ${JMS_DESTINATION_NAME:transfers}
+
+# Kafka topics
+consumer:
+  topic: ${CONSUMER_TOPIC:test-topic}
+
+producer:
+  topic: ${PRODUCER_TOPIC:test-topic}

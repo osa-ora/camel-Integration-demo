@@ -1,0 +1,38 @@
+spring.application.name=camel-demo
+camel.springboot.main-run-controller=true
+spring.main.web-application-type=servlet
+
+#DB configurations
+# Database Configuration
+spring.datasource.url=jdbc:mysql://localhost:3306/your_database_name
+spring.datasource.username=test
+spring.datasource.password=test
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+#JMS configuration
+# Use AMQ Kubernetes service name or IP address and port
+quarkus.qpid-jms.url=amqp://my-amq-amqp-0-svc:5672
+# Use AMQ Kubernetes service name or IP address and port
+mqtt.brokerUrl=tcp://my-amq-my-mqtt-0-svc:1883
+# Use either queue or topic
+jms.destinationType=topic
+# Queue or Topic name
+jms.destinationName=transfers
+mqtt.destinationName=transfers
+#client-id
+mqtt.client.id=swift-mqtt
+# Queue user and password
+quarkus.qpid-jms.username=admin
+quarkus.qpid-jms.password=adminPass
+mqtt.username=admin
+mqtt.password=adminPass
+
+# Bootstrap url:port, In this example we used the non-secure port
+camel.component.kafka.brokers=my-kafka-cluster-kafka-bootstrap:9092
+# Consumer topic name (to listen for messages)
+consumer.topic=test-topic
+# Producer topic name (to send messages to)
+producer.topic=test-topic
+
+
+
