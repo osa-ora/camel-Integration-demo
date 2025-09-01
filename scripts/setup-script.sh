@@ -40,7 +40,7 @@ read
 echo "Setup the Kafka node pool ..." 
 # Provision Kafka using object details
 oc apply -f https://raw.githubusercontent.com/osa-ora/camel-Integration-demo/refs/heads/main/scripts/nodepool.yaml
-
+echo "Setup the Kafka Cluster ..." 
 oc apply -f https://raw.githubusercontent.com/osa-ora/camel-Integration-demo/refs/heads/main/scripts/kafaka-cluster.yaml
 
 # Download kafka properties
