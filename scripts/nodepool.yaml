@@ -1,0 +1,19 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaNodePool
+metadata:
+  labels:
+    strimzi.io/cluster: my-kafka-cluster
+  name: my-pool
+  namespace: camel-demo
+spec:
+  replicas: 3
+  roles:
+    - broker
+    - controller
+  storage:
+    type: jbod
+    volumes:
+      - deleteClaim: false
+        id: 0
+        size: 100Gi
+        type: persistent-claim
