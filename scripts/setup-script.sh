@@ -37,8 +37,11 @@ oc create secret generic my-datasource --from-file=datasource.properties
 
 echo "Press [Enter] key to setup the Kafka cluster ..." 
 read
+echo "Setup the Kafka node pool ..." 
 # Provision Kafka using object details
-oc apply -f https://raw.githubusercontent.com/osa-ora/camel-Integration-demo/refs/heads/main/scripts/kafka-topic.yaml
+oc apply -f https://raw.githubusercontent.com/osa-ora/camel-Integration-demo/refs/heads/main/scripts/nodepool.yaml
+
+oc apply -f https://raw.githubusercontent.com/osa-ora/camel-Integration-demo/refs/heads/main/scripts/kafaka-cluster.yaml
 
 # Download kafka properties
 curl https://raw.githubusercontent.com/osa-ora/camel-Integration-demo/refs/heads/main/scripts/kafka.properties >kafka-config.properties
