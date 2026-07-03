@@ -49,12 +49,10 @@ oc expose svc/camel-app
 oc set env deployment/camel-app --from secret/my-datasource
 oc set env deployment/camel-app --from secret/my-kafka-props
 
-oc wait --for=condition=available deployment/mysql --timeout=300s
-oc wait --for=condition=available deployment/my-kafka-cluster-entity-operator --timeout=180s
-
 # Group all resourcs
 oc label deploymentconfig/mysql app.kubernetes.io/part-of=camel-demo
 oc label deployment/camel-app app.kubernetes.io/part-of=camel-demo
-oc label deployment/my-kafka-cluster-entity-operator app.kubernetes.io/part-of=camel-demo
+
+oc rollout status deployment/camel-app -n camel-demo --timeout=300s
 
 echo "Congratulations, we are done!"
