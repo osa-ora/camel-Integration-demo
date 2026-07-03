@@ -49,7 +49,7 @@ oc expose svc/camel-app
 oc set env deployment/camel-app --from secret/my-datasource
 oc set env deployment/camel-app --from secret/my-kafka-props
 
-oc wait --for=condition=available deployment/mysql --timeout=180s
+oc wait --for=condition=available deployment/mysql --timeout=300s
 oc wait --for=condition=available deployment/my-kafka-cluster-entity-operator --timeout=180s
 
 # Group all resourcs
