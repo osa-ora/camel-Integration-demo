@@ -11,7 +11,7 @@ Note: You'll need the following to execute the scenarios:
 
 To install the demo:
  ```
-  curl https://raw.githubusercontent.com/osa-ora/camel-Integration-demo/refs/heads/main/scripts/setup-script.sh > setup-script.sh
+  curl https://raw.githubusercontent.com/osa-ora/camel-Integration-demo/refs/heads/main/scripts/non-stop-setup.sh > setup-script.sh
   chmod +x setup-script.sh
   ./setup-script.sh camel-demo
  ```
